@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réglages</title>
+    <link href="botw-style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<style>
+      body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background 0.5s ease-in-out;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+            border-color: #024864;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+</style>
+
+<body>
+    
+    <header>
+        <div class="container">
+            <h1 class="title">Réglages</h1>
+            <div class="boutton">
+                <a href="index.html"><button>Retour au site BOTW</button></a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <h2>Personnaliser l'Apparence</h2>
+            <form id="settingsForm">
+                <div class="form-group">
+                    <label for="fontSelect">Choisir la police :</label>
+                    <select id="fontSelect" name="fontSelect">
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Tahoma">Tahoma</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                        <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                        <option value="Comic Sans MS">Comic Sans MS</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Palatino Linotype">Palatino Linotype</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Bookman">Bookman</option>
+                        <option value="Arial Black">Arial Black</option>
+                        <option value="Gill Sans">Gill Sans</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Calibri">Calibri</option>
+                        <option value="Candara">Candara</option>
+                        <option value="Optima">Optima</option>
+                        <option value="Futura">Futura</option>
+                        <option value="Press Start 2P">Press Start 2P</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fontSizeSelect">Choisir la taille de la police :</label>
+                    <select id="fontSizeSelect" name="fontSizeSelect">
+                        <option value="12px">12px</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="22px">22px</option>
+                        <option value="24px">24px</option>
+                        <option value="26px">26px</option>
+                        <option value="28px">28px</option>
+                        <option value="30px">30px</option>
+                        <option value="32px">32px</option>
+                        <option value="34px">34px</option>
+                        <option value="36px">36px</option>
+                        <option value="38px">38px</option>
+                        <option value="40px">40px</option>
+                        <option value="42px">42px</option>
+                        <option value="44px">44px</option>
+                        <option value="46px">46px</option>
+                        <option value="48px">48px</option>
+                        <option value="50px">50px</option>
+                    </select>
+                </div>
+                <button type="button" onclick="applySettings()">Appliquer</button>
+            </form>
+            <button type="button" onclick="toggleImage()">Afficher/Cacher l'image</button>
+            <button type="button" onclick="resetViews()">Remettre les vues à zéro</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Galerie d'Images</h1>
+        <p>Cliquez sur une image pour la définir comme arrière-plan.</p>
+        <div class="gallery">
+            <img src="bottw.jpg" alt="Image 1" onclick="setBackground(this.src)">
+            <img src="link.jpg" alt="Image 2" onclick="setBackground(this.src)">
+            <img src="Capture d’écran 2025-03-06 160750.jpg" alt="Image 3" onclick="setBackground(this.src)">
+            <img src="tw.jpg" alt="Image 4" onclick="setBackground(this.src)">
+            <img src="bbotw.jpg" alt="Image 5" onclick="setBackground(this.src)">
+            <img src="bootw.jpg" alt="Image 5" onclick="setBackground(this.src)">
+            <img src="botww.jpg" alt="Image 5" onclick="setBackground(this.src)">
+        </div>
+    </div>
+
+    <script>
+          function setBackground(imageSrc) {
+        // Sauvegarde l'image sélectionnée dans le localStorage
+        localStorage.setItem('backgroundImage', imageSrc);
+        alert('L\'arrière-plan a été modifié. Veuillez actualiser la page principale.');
+    }
+
+    // Récupère l'image de fond sauvegardée au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedBackground = localStorage.getItem('backgroundImage');
+        if (savedBackground) {
+            document.body.style.backgroundImage = `url('${savedBackground}')`;
+        }
+    });
+        function setBackground(imageSrc) {
+            document.body.style.backgroundImage = `url('${imageSrc}')`;
+            localStorage.setItem('backgroundImage', imageSrc); // Sauvegarde l'image dans le stockage local
+        }
+
+        // Récupère l'image de fond sauvegardée au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedBackground = localStorage.getItem('backgroundImage');
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url('${savedBackground}')`;
+            }
+        });
+    </script>
+    <footer>
+        <p>© 2021 Nintendo. The Legend of Zelda.</p>
+    </footer>
+
+    <script>
+        function applySettings() {
+            const font = document.getElementById('fontSelect').value;
+            const fontSize = document.getElementById('fontSizeSelect').value;
+            localStorage.setItem('font', font);
+            localStorage.setItem('fontSize', fontSize);
+            document.body.style.fontFamily = font;
+            document.body.style.fontSize = fontSize;
+        }
+
+        function toggleImage() {
+            const imageVisible = localStorage.getItem('imageVisible') === 'true';
+            localStorage.setItem('imageVisible', !imageVisible);
+            
+        }
+
+        function resetViews() {
+            localStorage.setItem('page_views', 0);
+            
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedFont = localStorage.getItem('font');
+            const savedFontSize = localStorage.getItem('fontSize');
+            if (savedFont) {
+                document.getElementById('fontSelect').value = savedFont;
+            }
+            if (savedFontSize) {
+                document.getElementById('fontSizeSelect').value = savedFontSize;
+            }
+        });
+    </script>
+    <div class="container">
+        <h1>Statistiques</h1>
+        <p>Nombre total de "J'aime" :</p>
+        <div class="like-stats">
+            <span id="totalLikes">0</span> J'aime
+        </div>
+    </div>
+    
+    <script>
+        // Affiche le nombre total de "J'aime" dans les paramètres
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalLikes = localStorage.getItem('likes') || 0;
+            document.getElementById('totalLikes').innerText = totalLikes;
+        });
+    </script>
+    
+    <style>
+        .like-stats {
+            font-size: 24px;
+            font-weight: bold;
+            color: #024864;
+            margin-top: 10px;
+        }
+    </style>
+</body>
+</html>

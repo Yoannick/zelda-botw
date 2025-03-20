@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changer la couleur du carré</title>
+    <style>
+        canvas {
+            animation-name: square-to-circle;
+            animation-duration: 50s;
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+        .div {
+            margin-top: 25px;
+            text-align: center;
+        }
+        @keyframes square-to-circle {
+    0% {
+        
+        
+        background: rgb(0+1, 0+1, +1);
+    }
+    25% {
+        
+        background: rgb(+2, +1, +1);
+    }
+    50% {
+        
+        background: rgb(+1, +2, +1);
+    }
+    75% {
+        
+        background: rgb(+1, +1, +2);
+    }
+    100% {
+        
+        background: rgb(+2, +1, +1);
+    }
+}
+        button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #024864;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border: 2px solid #024864;
+        }
+        button:hover {
+            background-color: #024864;
+            color: white;
+        }
+        
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input[type="color"] {
+            margin-right: 10px;
+        }
+        h1 {
+            text-align: center;
+            animation-name: square-to-circle;
+            animation-duration: infinite;
+            animation-timing-function: linear;
+        }
+    
+
+    </style>
+</head>
+<body>
+    <canvas class="canva" id="canvas" width="520" height="520"></canvas>
+    <div class="toolbar">
+        <label for="colorPicker">Choisir une couleur :</label>
+        <input type="color" id="colorPicker" aria-label="Sélectionner la couleur du carré" onchange="changeColorFromPicker(this.value)" />
+        <button onclick="startColorCycle()">Cycle des couleurs</button>
+    </div>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // Fonction pour dessiner le carré
+        function drawSquare(color) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, 520, 520);
+        }
+
+        // Fonction appelée par le sélecteur de couleur
+        function changeColorFromPicker(color) {
+            drawSquare(color);
+        }
+
+        // Dessine le carré initial en bleu
+        drawSquare("blue");
+
+        // Cycle des couleurs
+        let cycling = false;
+        let colorIndex = 0;
+        const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+
+        function startColorCycle() {
+            if (!cycling) {
+                cycling = true;
+                cycleColors();
+            } else {
+                cycling = false;
+            }
+        }
+
+        function cycleColors() {
+            if (cycling) {
+                drawSquare(colors[colorIndex]);
+                colorIndex = (colorIndex + 1) % colors.length;
+                setTimeout(cycleColors, 500); // Change de couleur toutes les 500ms
+            }
+        }
+    </script>
+    <h1>ici</h1>
+</body>
+</html>
